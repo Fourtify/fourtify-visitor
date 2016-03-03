@@ -5910,8 +5910,8 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   }
 }
 footer {
-  background-color: #edeff1;
-  color: #bac1c8;
+  background-color: #fff;
+  color: #fff;
   font-size: 15px;
   padding: 0;
 }

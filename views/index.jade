@@ -3,7 +3,7 @@
 html
     body
 
-        .container(ng-controller="IndexCtrl")
+        .container(ng-app="fourtifyApp", ng-controller="IndexCtrl as ctrl")
 
             .col-md-12.text-center
                 img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg")
@@ -25,54 +25,24 @@ html
                                 | Tell us about yourself
                         // Modal Body
                         .modal-body
-                            form(role='form')
+                            form(role='form', name="ctrl.theForms")
                                 .form-group
-                                    label(for='exampleInputEmail1') First Name
-                                    input#exampleInputEmail1.form-control(type='email', placeholder='First Name')
+                                    label(for='firstNameForm') First Name
+                                    input#firstNameForm.form-control(type='name', placeholder='First Name', ng-model="firstName")
                                 .form-group
-                                    label(for='exampleInputPassword1') Last Name
-                                    input#exampleInputPassword1.form-control(type='password', placeholder='Last Name')
+                                    label(for='lastNameForm') Last Name
+                                    input#lastNameForm.form-control(type='name', placeholder='Last Name', ng-model="lastName")
                                 .checkbox
                                     label
                                         input(type='checkbox')
                                         |  Notify me
-                                //button.btn.btn-default(type='submit') Submit
+
                         // Modal Footer
                         .modal-footer
-                            //button.btn.btn-default(type='button', data-dismiss='modal')
-                                | Close
-                            button.btn.btn-primary(type='button')
+                            button.btn.btn-primary( ui-sref='confirmation', ng-click="newItem")
                                 | Checkin
 
 
-            // Modal
-            //#myModal.modal.fade(role='dialog')
-                .modal-dialog
-                    // Modal content
-                    .modal-content
-                        .modal-header
-                            button.close(type='button', data-dismiss='modal') ×
-                            h4.modal-title Tell us a bit about yourself
-                        .modal-body
-                            .container(ng-controller="IndexCtrl")
-
-                                .col-md-12.text-center
-                                    //img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg", width="150")
-                                    .col-md-12.text-left.h4
-                                        //| First Name
-                                        input(type="text", placeholder='First Name').form-control
-                                        //| Last Name
-                                        br
-                                        input(type="text", placeholder='Last Name').form-control
-                                        br
-                                        .col-md-12.text-center
-                                            .row
-                                                a.btn.btn-primary.btn-lg(ui-sref='confirmation', href) SUBMIT
-
-
-
-                        //.modal-footer
-                            button.btn.btn-default(type='button', data-dismiss='modal') Close
 
         footer
             .container(ng-controller="IndexCtrl")

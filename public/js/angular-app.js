@@ -54,11 +54,25 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
 
 
     .controller('IndexCtrl', function ($scope, $state) {
+        console.log("im in indexctrl: "+ $scope);
 
     })
 
     .controller('InformationCtrl', function ($scope, $state) {
+        console.log("im in informationCtrl: "+$scope)
+    })
 
-    });
+/*
+app.controller('myCtrl', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+});
+    */
+    .controller('ConfirmationCtrl', function ($scope, $state) {
 
+        console.log("im in confirmationCtrl: "+ $scope.firstName);
+        console.log("im in confirmationCtrl: "+ $scope.lastName);
+
+
+    })
 
