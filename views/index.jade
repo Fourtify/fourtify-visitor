@@ -1,17 +1,31 @@
-
 //Login screen with footer
 
 html
     body
+
+
+
+
+
+
+
+
+
         .container(ng-controller="IndexCtrl")
             .col-md-12.text-center
                 img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg")
                 .row
-                    a.btn.btn-primary.btn-lg(ui-sref='information', href='') Let's Begin!
+                    a.btn.btn-primary.btn-lg(ui-sref='information') Let's Begin!
+                    //ui-sref='information', href='', type='button', data-toggle='modal', data-target='#myModal'
+
+
         footer
             .container(ng-controller="IndexCtrl")
                 .col-md-12.text-center
                     .row
-                        .footer-text(ui-sref='information', href) SWITCH TO ADMIN
+                        .footer-text(ui-sref='showAdminLoginDialog', href) SWITCH TO ADMIN
+
+
+
 
 

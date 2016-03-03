@@ -60,3 +60,5 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
     .controller('InformationCtrl', function ($scope, $state) {
 
     });
+
+

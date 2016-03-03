@@ -1,11 +1,33 @@
-.container(ng-controller="InformationCtrl")
+html
+    body
 
-    .col-md-12.text-left.h3
-        | FIRST NAME
-        input(type="text").form-control
-        | LAST NAME
-        input(type="text").form-control
 
-        .col-md-12.text-center
-            .row
-                a.btn.btn-success.btn-lg(ui-sref='confirmation', href) SUBMIT
+        .container(ng-controller="IndexCtrl")
+
+
+            .col-md-12.text-center
+                img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg", width="150")
+
+
+
+                .col-md-12.text-left.h4
+                    | First Name
+                    input(type="text", placeholder='First Name').form-control
+                    | Last Name
+                    input(type="text", placeholder='Last Name').form-control
+                    br
+                    .col-md-12.text-center
+                        .row
+                            a.btn.btn-primary.btn-lg(ui-sref='confirmation', href) SUBMIT
+
+        //.container(ng-controller="InformationCtrl")
+            .col-md-12.text-center
+                .col-md-12.text-left.h3
+                    | FIRST NAME
+                    input(type="text").form-control
+                    | LAST NAME
+                    input(type="text").form-control
+
+                    .col-md-12.text-center
+                        .row
+                            a.btn.btn-primary.btn-lg(ui-sref='confirmation', href) SUBMIT
