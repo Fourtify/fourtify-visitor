@@ -1,17 +1,24 @@
 .btn-primary {
     border:0px;
-    border-radius: 2px;
+    border-radius: 1px;
+    /*padding: 14px 45px;*/
+    padding-top: 14px;
+    padding-right: 80px;
+    padding-bottom: 14px;
+    padding-left: 80px;
     font-size: 32px;
     background-color: #2196F3;
-
 }
 
-a {
+.footer-text {
     color: #727272;
     font-size: 20px;
-    text-decoration: none;
+    cursor: pointer;
+    cursor: hand;
     font-family: gemFont;
 }
+
+
 
 .navbar {
     background-color: transparent;
