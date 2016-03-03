@@ -26,6 +26,16 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                 templateUrl: "/templates/index",
                 controller: "IndexCtrl"
             })
+            .state('information', {
+                url: "/information",
+                templateUrl: "/templates/information",
+                controller: "InformationCtrl"
+            })
+            .state('confirmation', {
+                url: "/confirmation",
+                templateUrl: "/templates/confirmation",
+                controller: "ConfirmationCtrl"
+            })
 
             /*.state('example', {
                 abstract: true,
@@ -44,5 +54,9 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
 
 
     .controller('IndexCtrl', function ($scope, $state) {
+
+    })
+
+    .controller('InformationCtrl', function ($scope, $state) {
 
     });

@@ -9,6 +9,14 @@ router.get('/templates/index', function (req, res) {
     res.render("index");
 });
 
+router.get('/templates/information', function (req, res) {
+    res.render("information");
+});
+
+router.get('/templates/confirmation', function (req, res) {
+    res.render("confirmation");
+});
+
 /*
 *   VIEWS
 */

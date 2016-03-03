@@ -1,0 +1,12 @@
+.btn-primary {
+    border:0px;
+    border-radius: 0px;
+    font-size: 42px;
+    background-color: #0b93d5;
+}
+
+.navbar {
+    background-color: transparent;
+    background: transparent;
+    border-color: transparent;
+}
