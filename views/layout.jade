@@ -7,6 +7,8 @@ html(dir="ltr", lang="en-US", ng-app="fourtifyApp")
 
         link(href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic", rel="stylesheet", type="text/css")
 
+        link(rel="stylesheet", href="/bower/bootstrap/dist/css/bootstrap.min.css", type="text/css")
+        link(rel="stylesheet", href="/bower/fontawesome/css/font-awesome.min.css")
 
         meta(name="viewport", content="width=device-width, initial-scale=1")
         title Fourtify Visitor App
@@ -17,4 +19,10 @@ html(dir="ltr", lang="en-US", ng-app="fourtifyApp")
                 ui-view
             include includes/footer
 
+        script(type="text/javascript", src="/bower/jquery/dist/jquery.min.js")
         script(type="text/javascript",src="/bower/angular/angular.min.js")
+        script(type="text/javascript",src="/bower/ocLazyLoad/dist/ocLazyLoad.min.js")
+        script(type="text/javascript",src="/bower/angular-ui-router/release/angular-ui-router.min.js")
+        script(type="text/javascript",src="/bower/angular-local-storage/dist/angular-local-storage.min.js")
+        script(type="text/javascript",src="/bower/angular-animate/angular-animate.min.js")
+        script(type="text/javascript", src="/js/angular-app.js")

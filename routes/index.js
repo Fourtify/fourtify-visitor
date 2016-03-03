@@ -13,7 +13,7 @@ router.get('/templates/index', function (req, res) {
 *   VIEWS
 */
 // GET - Index
-router.get('/*', function (req, res) {
+router.get('/', function (req, res) {
     res.render("layout");
 });
 
