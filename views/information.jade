@@ -1,20 +1,20 @@
-//Moved this to modal
-//Edit in index.html
-
-html
-    body
-        .container(ng-controller="IndexCtrl")
-            br
-            .col-md-12.text-center
-                img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg", width="150")
-
-                .col-md-12.text-left.h4
-                    //| First Name
-                    input(type="text", placeholder='First Name').form-control
-                    //| Last Name
-                    br
-                    input(type="text", placeholder='Last Name').form-control
-                    br
-                    .col-md-12.text-center
-                        .row
-                            a.btn.btn-primary.btn-lg(ui-sref='confirmation', href) SUBMIT
+.container
+    .col-md-12.text-center
+        form(role='form', name="ctrl.theForms")
+            .form-group
+                label(for='firstNameForm') First Name
+                input#firstNameForm.form-control(required, type='name', placeholder='First Name', ng-model="fname")
+            .form-group
+                label(for='lastNameForm') Last Name
+                input#lastNameForm.form-control(required, type='name', placeholder='Last Name', ng-model="lname")
+            .form-group
+                label(for='lastNameForm') Phone Number
+                input#phoneForm.form-control(required, type='number', placeholder='Phone Number', ng-model="phone")
+            .form-group
+                label(for='lastNameForm') Email
+                input#emailForm.form-control(required, type='name', placeholder='Email', ng-model="email")
+            .form-group(ng-if="error")
+                .alert.alert-danger {{error}}
+            .form-group
+                a.btn.btn-warning(type='button', href, ui-sref="home") Cancel
+                a.btn.btn-primary(type='button', ng-click="checkInformation()") Check-in

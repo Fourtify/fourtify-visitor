@@ -17,11 +17,23 @@ router.get('/templates/confirmation', function (req, res) {
     res.render("confirmation");
 });
 
+router.get('/templates/waiver', function (req, res) {
+    res.render("waiver");
+});
+
+router.get('/templates/confirmed', function (req, res) {
+    res.render("confirmed");
+});
+
+router.get('/templates/apptNotFound', function (req, res) {
+    res.render("apptNotFound");
+});
+
 /*
 *   VIEWS
 */
 // GET - Index
-router.get('/', function (req, res) {
+router.get('/*', function (req, res) {
     res.render("layout");
 });
 

@@ -27,14 +27,28 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                 controller: "IndexCtrl"
             })
             .state('information', {
-                url: "/information",
+                url: "/information/:from",
                 templateUrl: "/templates/information",
                 controller: "InformationCtrl"
             })
             .state('confirmation', {
-                url: "/confirmation",
+                url: "/confirmation/:from",
                 templateUrl: "/templates/confirmation",
                 controller: "ConfirmationCtrl"
+            })
+            .state('waiver', {
+                url: "/waiver/:from",
+                templateUrl: "/templates/waiver",
+                controller: "WaiverCtrl"
+            })
+            .state('confirmed', {
+                url: "/confirmed/:from",
+                templateUrl: "/templates/confirmed"
+            })
+            .state('apptNotFound', {
+                url: "/apptNotFound/:from",
+                templateUrl: "/templates/apptNotFound",
+                controller: "ApptNotFoundCtrl"
             })
 
             /*.state('example', {
@@ -53,37 +67,83 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
     })
 
 
-    .controller('IndexCtrl', function ($scope, $state) {
-        console.log("im in indexctrl: "+ $scope);
+    .controller('IndexCtrl', function ($scope, $state, $stateParams) {
+        $scope.begin = function(){
+            $state.go("information", {from:"home"}, {location:false});
+        }
 
     })
 
-    .controller('InformationCtrl', function ($scope, $state) {
-        console.log("im in informationCtrl: "+$scope)
+    .controller('InformationCtrl', function ($scope, $state, $stateParams) {
+        if($stateParams.from != "home" && $stateParams.from != "confirmation"){
+            $state.go("home");
+        }
+
+        $scope.error = null;
+        $scope.checkInformation = function(){
+            $scope.error = null;
+            if(!$scope.fname){
+                $scope.error = "First Name required!";
+            }
+            else if(!$scope.lname){
+                $scope.error = "Last Name required!";
+            }
+            else if(!$scope.phone){
+                $scope.error = "Phone required!";
+            }
+            else if(!$scope.email){
+                $scope.error = "Email required!";
+            }
+
+
+            if(!$scope.error){
+                //@todo this is hard coded validation, in reality we would connect to the api and see if appointment exists
+                if($scope.fname == "none"){
+                    $state.go("confirmation", {from:"information"}, {location:false});
+                }
+                else
+                    $state.go("apptNotFound", {from:"information"}, {location:false});
+                }
+
+            }
     })
 
 
-    .controller('ConfirmationCtrl', function ($scope, $state) {
+    .controller('ConfirmationCtrl', function ($scope, $state, $stateParams) {
+        if($stateParams.from != "information"){
+            $state.go("home");
+        }
 
-
-        $scope.submitCreate = function(){
-            $scope.queue.push({
-                name: $scope.name,
-                provider: $scope.provider,
-                reason: $scope.reason,
-                date: $scope.date,
-                time: $scope.time
-            });
-            $scope.name="";
-            $scope.provider="";
-            $scope.reason="";
-            $scope.date="";
-            $scope.time="";
-            jQuery('#myModal').modal('hide');
+        $scope.goBack = function(){
+            $state.go("information", {from:"confirmation"}, {location:false});
         };
-        console.log("im in confirmationCtrl: "+ $scope.firstName);
-        console.log("im in confirmationCtrl: "+ $scope.lastName);
 
+        $scope.confirm = function(){
+            $state.go("waiver", {from:"confirmation"}, {location:false});
+        };
 
+    })
+
+    .controller('WaiverCtrl', function ($scope, $state, $stateParams) {
+        if($stateParams.from != "confirmation"){
+            $state.go("home");
+        }
+
+        $scope.confirmed = function(){
+            $state.go("confirmed", {from:"waiver"}, {location:false});
+        }
+
+    })
+    .controller('ApptNotFoundCtrl', function ($scope, $state, $stateParams) {
+        if($stateParams.from != "information"){
+            $state.go("home");
+        }
+        $scope.someoneElse = function(){
+            $state.go("confirmed", {from:"apptNotFound"}, {location:false});
+        }
+
+        $scope.receptionist = function(){
+            $state.go("confirmed", {from:"apptNotFound"}, {location:false});
+        }
     })
 
