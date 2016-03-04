@@ -62,14 +62,25 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
         console.log("im in informationCtrl: "+$scope)
     })
 
-/*
-app.controller('myCtrl', function($scope) {
-    $scope.firstName = "John";
-    $scope.lastName = "Doe";
-});
-    */
+
     .controller('ConfirmationCtrl', function ($scope, $state) {
 
+
+        $scope.submitCreate = function(){
+            $scope.queue.push({
+                name: $scope.name,
+                provider: $scope.provider,
+                reason: $scope.reason,
+                date: $scope.date,
+                time: $scope.time
+            });
+            $scope.name="";
+            $scope.provider="";
+            $scope.reason="";
+            $scope.date="";
+            $scope.time="";
+            jQuery('#myModal').modal('hide');
+        };
         console.log("im in confirmationCtrl: "+ $scope.firstName);
         console.log("im in confirmationCtrl: "+ $scope.lastName);
 

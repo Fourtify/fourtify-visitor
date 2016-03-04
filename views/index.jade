@@ -12,7 +12,7 @@ html
                     //ui-sref='information', href='', type='button', data-toggle='modal', data-target='#myModal'
 
 
-            // Modal
+            // Checkin Modal
             #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
                 .modal-dialog
                     .modal-content
@@ -37,20 +37,42 @@ html
                                         input(type='checkbox')
                                         |  Notify me
 
-                        // Modal Footer
+                        // Modal Footer //ui-sref='confirmation', ng-click="newItem"
                         .modal-footer
-                            button.btn.btn-primary( ui-sref='confirmation', ng-click="newItem")
+                            button.btn.btn-primary(type='button', data-toggle='modal', data-target='#confirmationModal', data-dismiss='modal')
+                                | Checkin
+                            //button.btn.btn-primary( type='button', data-toggle='modal', data-target='#myModal',)
                                 | Checkin
 
 
+            //Confirmation Modal
+            #confirmationModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+                .modal-dialog
+                    .modal-content
+                        // Modal Header
+                        .modal-header
+                            button.close(type='button', data-dismiss='modal')
+                                span(aria-hidden='true') ×
+                                span.sr-only Close
+                            //h4#confirmationModalLabel.modal-title
+                                | Tell us about yourself
+                        // Modal Body
+                        .modal-body
+                            form(role='form', name="ctrl.theForms")
+                                h5#confirmationModalText.modal-title
+                                    | Congrats, you are checked in!
 
-        footer
+                        // Modal Footer
+                        .modal-footer
+                            button.btn.btn-primary(  data-dismiss='modal')
+                                | Ok
+
+        //ADMIN Text
+        //footer
             .container(ng-controller="IndexCtrl")
                 .col-md-12.text-center
                     .row
                         .footer-text(ui-sref='showAdminLoginDialog', href) SWITCH TO ADMIN
-
-
 
 
 
