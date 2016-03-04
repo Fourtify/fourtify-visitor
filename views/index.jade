@@ -1,5 +1,87 @@
-.container(ng-controller="IndexCtrl")
-    .col-md-12
-        button.btn.btn-primary CHECK IN
+//Login screen with footer
 
-//index should go here
+html
+    body
+
+        .container(ng-app="fourtifyApp", ng-controller="IndexCtrl as ctrl")
+
+            .col-md-12.text-center
+                img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg")
+                .row
+                    a.btn.btn-primary.btn-lg(type='button', data-toggle='modal', data-target='#myModal') Let's Begin!
+                    //ui-sref='information', href='', type='button', data-toggle='modal', data-target='#myModal'
+
+
+            // Checkin Modal
+            #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+                .modal-dialog
+                    .modal-content
+                        // Modal Header
+                        .modal-header
+                            button.close(type='button', data-dismiss='modal')
+                                span(aria-hidden='true') ×
+                                span.sr-only Close
+                            h4#myModalLabel.modal-title
+                                | Tell us about yourself
+                        // Modal Body
+                        .modal-body
+                            form(role='form', name="ctrl.theForms")
+                                .form-group
+                                    label(for='firstNameForm') First Name
+                                    input#firstNameForm.form-control(type='name', placeholder='First Name', ng-model="firstName")
+                                .form-group
+                                    label(for='lastNameForm') Last Name
+                                    input#lastNameForm.form-control(type='name', placeholder='Last Name', ng-model="lastName")
+                                .form-group
+                                    label(for='lastNameForm') Phone Number
+                                    input#phoneForm.form-control(type='number', placeholder='Phone Number', ng-model="phone")
+                                .form-group
+                                    label(for='lastNameForm') Email
+                                    input#emailForm.form-control(type='name', placeholder='Email', ng-model="email")
+                                //.checkbox
+                                    label
+                                        input(type='checkbox')
+                                        |  Notify me
+
+                        // Modal Footer //ui-sref='confirmation', ng-click="newItem"
+                        .modal-footer
+                            button.btn.btn-primary(type='button', data-toggle='modal', data-target='#confirmationModal', data-dismiss='modal')
+                                | Checkin
+                            //button.btn.btn-primary( type='button', data-toggle='modal', data-target='#myModal',)
+                                | Checkin
+
+
+            //Confirmation Modal
+            #confirmationModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+                .modal-dialog
+                    .modal-content
+                        // Modal Header
+                        .modal-header
+                            button.close(type='button', data-dismiss='modal')
+                                span(aria-hidden='true') ×
+                                span.sr-only Close
+                            //h4#confirmationModalLabel.modal-title
+                                | Tell us about yourself
+                        // Modal Body
+                        .modal-body
+
+                            //form(role='form', name="ctrl.theForms")
+                            .col-md-12.text-center
+                                h5#confirmationModalText.modal-title
+                                    | Congrats, you are checked in!
+                            br
+                        // Modal Footer
+                        .modal-footer
+                            .col-md-12.text-center
+                                button.btn.btn-primary(  data-dismiss='modal')
+                                    | Ok
+
+        //ADMIN Text
+        //footer
+            .container(ng-controller="IndexCtrl")
+                .col-md-12.text-center
+                    .row
+                        .footer-text(ui-sref='showAdminLoginDialog', href) SWITCH TO ADMIN
+
+
+

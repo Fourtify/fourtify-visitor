@@ -26,6 +26,16 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                 templateUrl: "/templates/index",
                 controller: "IndexCtrl"
             })
+            .state('information', {
+                url: "/information",
+                templateUrl: "/templates/information",
+                controller: "InformationCtrl"
+            })
+            .state('confirmation', {
+                url: "/confirmation",
+                templateUrl: "/templates/confirmation",
+                controller: "ConfirmationCtrl"
+            })
 
             /*.state('example', {
                 abstract: true,
@@ -44,5 +54,36 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
 
 
     .controller('IndexCtrl', function ($scope, $state) {
+        console.log("im in indexctrl: "+ $scope);
 
-    });
+    })
+
+    .controller('InformationCtrl', function ($scope, $state) {
+        console.log("im in informationCtrl: "+$scope)
+    })
+
+
+    .controller('ConfirmationCtrl', function ($scope, $state) {
+
+
+        $scope.submitCreate = function(){
+            $scope.queue.push({
+                name: $scope.name,
+                provider: $scope.provider,
+                reason: $scope.reason,
+                date: $scope.date,
+                time: $scope.time
+            });
+            $scope.name="";
+            $scope.provider="";
+            $scope.reason="";
+            $scope.date="";
+            $scope.time="";
+            jQuery('#myModal').modal('hide');
+        };
+        console.log("im in confirmationCtrl: "+ $scope.firstName);
+        console.log("im in confirmationCtrl: "+ $scope.lastName);
+
+
+    })
+

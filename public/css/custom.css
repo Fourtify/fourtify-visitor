@@ -1,0 +1,64 @@
+/* Big ass button*/
+.btn-primary {
+    border:0px;
+    border-radius: 1px;
+    /*padding: 14px 45px;*/
+    padding-top: 14px;
+    padding-right: 80px;
+    padding-bottom: 14px;
+    padding-left: 80px;
+    font-size: 32px;
+    background-color: #2196F3;
+}
+
+.footer-text {
+    color: #727272;
+    font-size: 20px;
+    cursor: pointer;
+    cursor: hand;
+    font-family: gemFont;
+}
+
+.navbar {
+    background-color: transparent;
+    background: transparent;
+    border-color: transparent;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px;
+    padding: 5px;
+}
+
+footer {
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+}
+
+/* Text for admin login*/
+@font-face {
+    font-family: gemFont;
+    src: url(/fonts/GemFont.ttf);
+}
+
+/**Modal */
+.modal-body .form-horizontal .col-sm-2,
+.modal-body .form-horizontal .col-sm-10 {
+    width: 100%
+}
+
+.modal-body .form-horizontal .control-label {
+    text-align: left;
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
+}
