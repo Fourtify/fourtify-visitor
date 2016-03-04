@@ -32,7 +32,13 @@ html
                                 .form-group
                                     label(for='lastNameForm') Last Name
                                     input#lastNameForm.form-control(type='name', placeholder='Last Name', ng-model="lastName")
-                                .checkbox
+                                .form-group
+                                    label(for='lastNameForm') Phone Number
+                                    input#phoneForm.form-control(type='number', placeholder='Phone Number', ng-model="phone")
+                                .form-group
+                                    label(for='lastNameForm') Email
+                                    input#emailForm.form-control(type='name', placeholder='Email', ng-model="email")
+                                //.checkbox
                                     label
                                         input(type='checkbox')
                                         |  Notify me
@@ -58,14 +64,17 @@ html
                                 | Tell us about yourself
                         // Modal Body
                         .modal-body
-                            form(role='form', name="ctrl.theForms")
+
+                            //form(role='form', name="ctrl.theForms")
+                            .col-md-12.text-center
                                 h5#confirmationModalText.modal-title
                                     | Congrats, you are checked in!
-
+                            br
                         // Modal Footer
                         .modal-footer
-                            button.btn.btn-primary(  data-dismiss='modal')
-                                | Ok
+                            .col-md-12.text-center
+                                button.btn.btn-primary(  data-dismiss='modal')
+                                    | Ok
 
         //ADMIN Text
         //footer
