@@ -1,16 +1,54 @@
 /* Big ass button*/
 .btn-primary {
+    color: #ffffff;
     border:0px;
     border-radius: 1px;
-    padding-top: 14px;
-    padding-right: 50px;
-    padding-bottom: 14px;
-    padding-left: 50px;
     font-size: 32px;
     margin-top: 30px;
     margin-left: 25px;
     margin-right: 25px;
     background-color: #2196F3;
+    width:40%;
+}
+
+.btn-primary:hover {
+    color: #ffffff;
+    background-color: #0288D1;
+    border-color: rgba(0,0,0,0);
+}
+
+/*
+a:active {
+    font-size: 18px;
+    border: 2px solid green;
+    border-radius: 100px;
+    background-color: #0b58a2;
+    width: 100px;
+    height: 100px;
+}
+*/
+
+.btn-primary-somebodyelse {
+    color: #ffffff;
+    border:0px;
+    border-radius: 1px;
+    font-size: 25px;
+    margin-top: 30px;
+    margin-left: 25px;
+    margin-right: 25px;
+    background-color: #2196F3;
+    width:55%;
+}
+
+.btn-danger {
+    color: #ffffff;
+    background-color: #F44336;
+    border-color: transparent;
+    font-size: 25px;
+    margin-top: 30px;
+    margin-left: 25px;
+    margin-right: 25px;
+    width:55%;
 }
 
 .footer-text {
