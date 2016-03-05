@@ -1,14 +1,15 @@
 .container
-    br
-    br
-    br
     .col-md-12.text-center
-        .col-md-12.text-center
-            h4 OOPS!
-            h4 We can't seem to find your appointment
-        .col-md-12.text-center
-            button.btn.btn-primary-somebodyelse(ng-click="someoneElse()") I'm checking in for someone else
-        .col-md-12.text-center
-            button.btn.btn-danger(ng-click="receptionist()") Talk to receptionist
+        img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg" width="200px")
+        br
+        br
+        h4 OOPS!
+        h4 We can't seem to find your appointment
+        br
+        br
+    .col-md-12.text-center
+        a.btn.btn-primary-else(type='button', href="", ng-click="someoneElse()") I'm checking in for someone else
+    .col-md-12.text-center
+        button.btn.btn-danger(ng-click="receptionist()") Talk to receptionist
 
 

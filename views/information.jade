@@ -1,4 +1,6 @@
 .container
+    .col-md-12.text-center
+        img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg" width="200px")
     .col-md-12.text-left
         form(role='form', name="ctrl.theForms")
             .form-group
@@ -17,5 +19,5 @@
                 .alert.alert-danger {{error}}
             .col-md-12.text-center
                 .form-group
-                    a.btn.btn-primary(type='button', href, ui-sref="home") Cancel
-                    a.btn.btn-primary(type='button', ng-click="checkInformation()") Check-in
+                a.btn.btn-primary(type='button', href="", ui-sref="home") Cancel
+                a.btn.btn-primary(type='button', href="", ng-click="checkInformation()") Check-in

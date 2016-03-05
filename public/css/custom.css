@@ -1,4 +1,6 @@
 /* Big ass button*/
+
+/**TODO: custom fill these colors from database per provider color scheme */
 .btn-primary {
     color: #ffffff;
     border:0px;
@@ -11,24 +13,29 @@
     width:40%;
 }
 
-.btn-primary:hover {
+a.btn-primary:active:focus {
     color: #ffffff;
-    background-color: #0288D1;
+    background-color: #2196F3;
+    border-color: #494F57;
+}
+
+a.btn-primary:hover:focus:active {
+    color: #ffffff;
+    background-color: #2196F3;
     border-color: rgba(0,0,0,0);
 }
 
-/*
-a:active {
-    font-size: 18px;
-    border: 2px solid green;
-    border-radius: 100px;
-    background-color: #0b58a2;
-    width: 100px;
-    height: 100px;
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #59B4FD;
 }
-*/
 
-.btn-primary-somebodyelse {
+.btn-primary:active, .btn-primary.active {
+    background: #59B4FD;
+    box-shadow: none;
+}
+
+
+.btn-primary-else {
     color: #ffffff;
     border:0px;
     border-radius: 1px;
@@ -38,6 +45,21 @@ a:active {
     margin-right: 25px;
     background-color: #2196F3;
     width:55%;
+}
+
+a.btn-primary-else:hover:focus:active {
+    color: #ffffff;
+    background-color: #59B4FD;
+    border-color: rgba(0,0,0,0);
+}
+
+.btn-primary-else:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #59B4FD;
+}
+
+.btn-primary-else:active, .btn-primary.active {
+    background: #59B4FD;
+    box-shadow: none;
 }
 
 .btn-danger {
@@ -50,6 +72,14 @@ a:active {
     margin-right: 25px;
     width:55%;
 }
+
+
+
+h4 {
+    color: #727272;
+}
+
+
 
 .footer-text {
     color: #727272;
@@ -86,7 +116,6 @@ label {
     margin-bottom: 5px;
     margin-left: 0px;
     font-weight: bold;
-
 }
 
 label, .radio label, .checkbox label, .help-block {

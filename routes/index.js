@@ -6,7 +6,7 @@ var async = require('async');
 /*** Templates ****/
 // GET - Index
 router.get('/templates/index', function (req, res) {
-    res.render("index");
+    res.render("index"); //index
 });
 
 router.get('/templates/information', function (req, res) {
