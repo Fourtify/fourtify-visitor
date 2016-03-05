@@ -79,7 +79,25 @@ h4 {
     color: #727272;
 }
 
+textarea.form-control {
+    border: none;
+    overflow: auto;
+    outline: none;
+    color: #000;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
 
+textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
 
 .footer-text {
     color: #727272;

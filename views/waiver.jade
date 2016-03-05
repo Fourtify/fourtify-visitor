@@ -1,10 +1,13 @@
 .container
-
     .col-md-12.text-center
+        img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg" width="200px")
+        br
         h4 Waiver
-        p I hereby grant some douchebags permissions to do things do me and to use my likeness in a photograph, video
-        | , or other digital media manner, without payment or other considerations
-        p Clinic not responsible for injuries and/or deaths caused by malpractice, carelessness, inexperience, etc.
+        form(role='form', name="ctrl.theForms")
+            .form-group
+                textarea.form-control(placeholder='I hereby grant some douchebags permissions to do things do me and to use my likeness in a photograph, video'+
+                 ', or other digital media manner, without payment or other considerations. Clinic not responsible for injuries and/or deaths caused by '+
+                'malpractice, carelessness, inexperience, etc.', rows='8')
     .col-md-12.text-center
-        button.btn.btn-success(ng-click="confirmed()") I HAVE READ AND AGREE TO THESE TERMS
-
+        //button.btn.btn-success(type='button', href="", ng-click="confirmed()") I HAVE READ AND AGREE TO THESE TERMS
+        a.btn.btn-primary-else(type='button', href="", ng-click="confirmed()") I HAVE READ AND AGREE TO THE TERMS
