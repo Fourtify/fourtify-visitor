@@ -1,5 +1,5 @@
 .container
-    .col-md-12.text-center
+    .col-md-12.text-left
         form(role='form', name="ctrl.theForms")
             .form-group
                 label(for='firstNameForm') First Name
@@ -15,6 +15,7 @@
                 input#emailForm.form-control(required, type='name', placeholder='Email', ng-model="email")
             .form-group(ng-if="error")
                 .alert.alert-danger {{error}}
-            .form-group
-                a.btn.btn-warning(type='button', href, ui-sref="home") Cancel
-                a.btn.btn-primary(type='button', ng-click="checkInformation()") Check-in
+            .col-md-12.text-center
+                .form-group
+                    a.btn.btn-primary(type='button', href, ui-sref="home") Cancel
+                    a.btn.btn-primary(type='button', ng-click="checkInformation()") Check-in
