@@ -36,8 +36,8 @@ app.use(function(req, res, next) {
     var domainArr = req.headers.host.split(".");
     var domain = domainArr[0];
 
-    if(environment=="production" && domainArr[1]!="fourtify.us"){
-        res.status(500).send("Domain must be fourtify.us"+domainArr[1]);
+    if(environment=="production" && domainArr[1]!="fourtify"){
+        res.status(500).send("Domain must be fourtify.us");
         return;
     }
 
