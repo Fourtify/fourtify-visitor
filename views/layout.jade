@@ -17,11 +17,11 @@ html(dir="ltr", lang="en-US", ng-app="fourtifyApp")
 
         meta(name="viewport", content="width=device-width, initial-scale=1")
         title Fourtify Visitor App
-        body.stretched(ng-controller="MainCtrl")
-                #wrapper.clearfix
-                    section#content
-                        ui-view
-            //include includes/footer
+    body.stretched(ng-controller="MainCtrl")
+        #wrapper.clearfix
+            section#content
+                ui-view
+        //include includes/footer
 
         script(type="text/javascript", src="/bower/jquery/dist/jquery.min.js")
         script(type="text/javascript", src="/bower/bootswatch-dist/js/bootstrap.min.js")

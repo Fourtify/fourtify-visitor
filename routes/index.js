@@ -6,27 +6,41 @@ var async = require('async');
 /*** Templates ****/
 // GET - Index
 router.get('/templates/index', function (req, res) {
-    res.render("index"); //index
+    console.log(req.provider);
+    console.log(req.provider._name);
+    res.render("index", {
+        provider: req.provider
+    }); //index
 });
 
 router.get('/templates/information', function (req, res) {
-    res.render("information");
+    res.render("information", {
+        provider: req.provider
+    });
 });
 
 router.get('/templates/confirmation', function (req, res) {
-    res.render("confirmation");
+    res.render("confirmation", {
+        provider: req.provider
+    });
 });
 
 router.get('/templates/waiver', function (req, res) {
-    res.render("waiver");
+    res.render("waiver", {
+        provider: req.provider
+    });
 });
 
 router.get('/templates/confirmed', function (req, res) {
-    res.render("confirmed");
+    res.render("confirmed", {
+        provider: req.provider
+    });
 });
 
 router.get('/templates/apptNotFound', function (req, res) {
-    res.render("apptNotFound");
+    res.render("apptNotFound", {
+        provider: req.provider
+    });
 });
 
 /*
