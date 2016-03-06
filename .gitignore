@@ -11,8 +11,6 @@ npm-debug.log
 ./config/email.json
 config/email.json
 .idea/*
-config/config.json
-./config/config.json
 .DS_Store
 # anguler-analytics code
 public/js/analytics.js
