@@ -37,7 +37,7 @@ app.use(function(req, res, next) {
     var domain = domainArr[0];
 
     if(environment=="production" && domainArr[1]!="fourtify.us"){
-        res.status(500).send("Domain must be fourtify.us");
+        res.status(500).send("Domain must be fourtify.us"+domainArr[1]);
         return;
     }
 
