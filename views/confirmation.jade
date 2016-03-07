@@ -2,11 +2,11 @@
     .col-md-12.text-center
         img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg" width="200px")
         br
-        h4 Joe Ass Hat
-        h4 8 - 8:30 PM
+        h4 {{visitor._name._first}} {{visitor._name._last}}
+        h4 {{appt._start}} - {{appt._end}}
         h4 Photo
-        h4 911-911-9119
-        h4 none@none.com
+        h4 {{visitor._phone._number}}
+        h4 {{visitor._email}}
     .col-md-12.text-center
         a.btn.btn-primary-else(type='button', href="", ng-click="confirm()") Yes, check me in
     .col-md-12.text-center

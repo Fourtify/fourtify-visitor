@@ -18,7 +18,7 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
         $locationProvider.html5Mode(true);
 
         localStorageServiceProvider
-            .setPrefix('fourtify');
+            .setPrefix('fourtify').setStorageType('localStorage');
 
         $stateProvider
             .state('home', {
@@ -32,7 +32,7 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                 controller: "InformationCtrl"
             })
             .state('confirmation', {
-                url: "/confirmation/:from",
+                url: "/confirmation/:from/:",
                 templateUrl: "/templates/confirmation",
                 controller: "ConfirmationCtrl"
             })
@@ -74,45 +74,79 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
 
     })
 
-    .controller('InformationCtrl', function ($scope, $state, $stateParams) {
+    .controller('InformationCtrl', function ($scope, $state, $stateParams, FourtifyService, localStorageService, $rootScope) {
         if($stateParams.from != "home" && $stateParams.from != "confirmation"){
             $state.go("home");
         }
 
         $scope.error = null;
-        $scope.checkInformation = function(){
+        $scope.checkInformation = function() {
             $scope.error = null;
-            if(!$scope.fname){
+            if (!$scope.fname) {
                 $scope.error = "First Name required!";
             }
-            else if(!$scope.lname){
+            else if (!$scope.lname) {
                 $scope.error = "Last Name required!";
             }
-            else if(!$scope.phone){
+            else if (!$scope.phone) {
                 $scope.error = "Phone required!";
             }
-            else if(!$scope.email){
+            else if (!$scope.email) {
                 $scope.error = "Email required!";
             }
 
 
-            if(!$scope.error){
-                //@todo this is hard coded validation, in reality we would connect to the api and see if appointment exists
-                if($scope.fname == "none"){
-                    $state.go("confirmation", {from:"information"}, {location:false});
-                }
-                else
+            if (!$scope.error) {
+                FourtifyService.getVisitor({
+                    /*name: {
+                        first: $scope.fname,
+                        last: $scope.lname
+                    },*/
+                    email: $scope.email
+                }, function (data) {
+                    if(data.length > 0){
+                        FourtifyService.getAppointment({
+                            visitor: data[0]._id
+                        }, function (data2) {
+                            if(data.length > 0){
+                                $rootScope.visitor = data[0];
+                                $rootScope.appt = data2[0];
+                                $state.go("confirmation", {from:"information"}, {location:false});
+                            }
+                            else{
+                                $state.go("apptNotFound", {from:"information"}, {location:false});
+                            }
+                        }, function (data, status) {
+                            $state.go("apptNotFound", {from:"information"}, {location:false});
+                        });
+                    }
+                    else{
+                        $state.go("apptNotFound", {from:"information"}, {location:false});
+                    }
+                }, function (data, status) {
                     $state.go("apptNotFound", {from:"information"}, {location:false});
-                }
+                });
+
+                //@todo this is hard coded validation, in reality we would connect to the api and see if appointment exists
+                /*if($scope.fname == "none"){
+                 //$state.go("confirmation", {from:"information"}, {location:false});
+                 }
+                 else
+                 //$state.go("apptNotFound", {from:"information"}, {location:false});
+                 }*/
 
             }
+        }
     })
 
 
-    .controller('ConfirmationCtrl', function ($scope, $state, $stateParams) {
+    .controller('ConfirmationCtrl', function ($scope, $state, $stateParams, localStorageService, $rootScope) {
         if($stateParams.from != "information"){
             $state.go("home");
         }
+
+        $scope.appt = $rootScope.appt;
+        $scope.visitor = $rootScope.visitor;
 
         $scope.goBack = function(){
             $state.go("information", {from:"confirmation"}, {location:false});
@@ -130,6 +164,7 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
         }
 
         $scope.confirmed = function(){
+            //@todo visitor with appt to queue
             $state.go("confirmed", {from:"waiver"}, {location:false});
         }
 
@@ -146,4 +181,37 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
             $state.go("confirmed", {from:"apptNotFound"}, {location:false});
         }
     })
+    .service('FourtifyService', [
+        '$http',
+        function ($http, $rootScope, $window) {
+            return {
+                getVisitor: function(params, success, error) {
+                    var req = {
+                        method: 'GET',
+                        url: '/visitors',
+                        params: params
+                    };
+                    this.apiCall(req, success, error);
+                },
+                getAppointment: function(params, success, error) {
+                    var req = {
+                        method: 'GET',
+                        url: '/appointments',
+                        params: params
+                    };
+                    this.apiCall(req, success, error);
+                },
+                apiCall: function(req, success, error) {
+                    req.headers = {url: req.url};
+                    req.url = "/api";
+                    $http(req).success(function(data) {
+                        success(data);
+                    }).error(function(data, status) {
+                        error(data, status);
+                    });
+                }
+            };
+        }
+    ]);
+
 

@@ -1,7 +1,12 @@
+var environment = process.env.NODE_ENV;
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
 var async = require('async');
+var request = require("request");
+
+var config = require('../config/config.json')[environment];
+var API_URL = config.apiUrl;
 
 /*** Templates ****/
 // GET - Index
@@ -42,15 +47,33 @@ router.get('/templates/apptNotFound', function (req, res) {
 });
 
 /*
-*   VIEWS
+*   OTHER API
 */
+router.all("/api", function(req, res){
+    var bod = req.body;
+    bod.provider = req.provider._id;
+    request({
+            method: req.method,
+            uri: API_URL+req.headers.url,
+            qs: req.query,
+            json: bod
+        },
+        function (error, response, body) {
+            if (error) {
+                console.log(error);
+                return res.status(500).send({_code:"BMS002", _msg:"Connection to API failed. Please try again later."});
+            }
+            res.status(response.statusCode).send(body);
+        });
+});
+
+/*
+ *   VIEWS
+ */
 // GET - Index
 router.get('/*', function (req, res) {
     res.render("layout");
 });
 
-/*
-*   OTHER API
-*/
 
 module.exports = router;
