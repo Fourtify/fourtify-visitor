@@ -17,6 +17,6 @@ NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
 9. `npm start`
 
-10.  Follow the instructions to start the api.  
+10.  Follow the instructions to start the api here: https://github.com/Fourtify/fourtify-api
 
 11.  You can test locally by opening "domain.localhost:3001" where "domain" is an existing provider name on fourtify.us
