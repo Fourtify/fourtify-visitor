@@ -164,14 +164,24 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
 
     })
 
-    .controller('WaiverCtrl', function ($scope, $state, $stateParams) {
+    .controller('WaiverCtrl', function ($scope, $state, $stateParams, $rootScope, FourtifyService) {
         if($stateParams.from != "confirmation"){
             $state.go("home");
         }
 
         $scope.confirmed = function(){
-            //@todo visitor with appt to queue
+            FourtifyService.addToQueue({
+                visitor: $rootScope.visitor._id,
+                appointment: $rootScope.appt._id,
+                position: 1
+            }, function(data){
+                // Success
+            }, function(data, status){
+                // Error
+            });
+
             $state.go("confirmed", {from:"waiver"}, {location:false});
+
         }
 
     })
@@ -204,6 +214,14 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                         method: 'GET',
                         url: '/appointments',
                         params: params
+                    };
+                    this.apiCall(req, success, error);
+                },
+                addToQueue: function(params, success, error) {
+                    var req = {
+                        method: 'POST',
+                        url: '/queue',
+                        data: params
                     };
                     this.apiCall(req, success, error);
                 },
