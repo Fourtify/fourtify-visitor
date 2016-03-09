@@ -170,7 +170,6 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
         }
 
         $scope.confirmed = function(){
-            //@todo finish this addToQueue call
             FourtifyService.addToQueue({
                 visitor: $rootScope.visitor._id,
                 appointment: $rootScope.appt._id,
