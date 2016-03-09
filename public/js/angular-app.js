@@ -111,6 +111,12 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                             if(data.length > 0){
                                 $rootScope.visitor = data[0];
                                 $rootScope.appt = data2[0];
+                                if($rootScope.appt._start){
+                                    $rootScope.appt._start = moment($rootScope.appt._start).format("dddd, h:mm a");
+                                }
+                                if($rootScope.appt._end){
+                                    $rootScope.appt._end = moment($rootScope.appt._end).format("dddd, h:mm a");
+                                }
                                 $state.go("confirmation", {from:"information"}, {location:false});
                             }
                             else{
