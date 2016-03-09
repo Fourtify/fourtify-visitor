@@ -171,6 +171,10 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
 
         $scope.confirmed = function(){
             //@todo visitor with appt to queue
+            //@todo: check if there is a queue with FourtifyService.getQueue()
+            // if so, add to queue (PUT)
+            // else create a new queue (POST)
+            // FourtifyService.createQueue() VS FourtifyService.addToQueue()
             $state.go("confirmed", {from:"waiver"}, {location:false});
         }
 
@@ -207,6 +211,32 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                     };
                     this.apiCall(req, success, error);
                 },
+                getQueue: function(params, success, error){
+                    var req = {
+                        method: 'GET',
+                        url: '/queue',
+                        params: params
+                    };
+                    this.apiCall(req, success, error);
+                },
+                addToQueue: function(params, success, error) {
+                    var req = {
+                        method: 'PUT',
+                        //@todo should be /queue/:queueId  ?
+                        url: '/queue',
+                        params: params
+                    };
+                    this.apiCall(req, success, error);
+                },
+                createQueue: function(params, success, error) {
+                    var req = {
+                        method: 'POST',
+                        url: '/queue',
+                        params: params
+                    };
+                    this.apiCall(req, success, error);
+                },
+
                 apiCall: function(req, success, error) {
                     req.headers = {url: req.url};
                     req.url = "/api";
