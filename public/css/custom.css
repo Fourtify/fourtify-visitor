@@ -73,8 +73,6 @@ a.btn-primary-else:hover:focus:active {
     width:55%;
 }
 
-
-
 h4 {
     color: #727272;
 }
@@ -93,7 +91,7 @@ textarea {
     border: none;
     overflow: auto;
     outline: none;
-
+    color: #000;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;

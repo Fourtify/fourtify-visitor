@@ -50,7 +50,7 @@ app.use(function(req, res, next) {
                 return res.status(500).send({_code:"SITE002", _msg:"Connection to API failed. Please try again later."});
             }
             else if(response.statusCode == 500){
-                return res.status(500).send("Domain is not found. Please make sure your site is registered at http://fourtify.us");
+                return res.status(500).send("Domain is not found. Please make sure your site is registered at http://fourtify.us");     //This should redirect to a common not found page
             }
             else{
                 req.provider = JSON.parse(body);

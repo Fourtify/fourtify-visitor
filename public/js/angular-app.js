@@ -81,6 +81,8 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
 
         $scope.error = null;
         $scope.checkInformation = function() {
+
+            console.log("in checkInfo")
             $scope.error = null;
             if (!$scope.fname) {
                 $scope.error = "First Name required!";
@@ -95,7 +97,7 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                 $scope.error = "Email required!";
             }
 
-
+            console.log("after checkInfo")
             if (!$scope.error) {
                 FourtifyService.getVisitor({
                     /*name: {
