@@ -50,13 +50,13 @@ router.get('/templates/apptNotFound', function (req, res) {
 *   OTHER API
 */
 router.all("/api", function(req, res){
-    var bod = req.body;
-    bod.provider = req.provider._id;
     request({
+            headers: {
+                "Authorization": "Basic "+(new Buffer(req.provider._clientId+":"+req.provider._clientSecret).toString('base64')),
+            },
             method: req.method,
             uri: API_URL+req.headers.url,
-            qs: req.query,
-            json: bod
+            qs: req.query
         },
         function (error, response, body) {
             if (error) {
