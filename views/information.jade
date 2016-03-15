@@ -6,16 +6,16 @@ div.title Who are you checking in?
                 .alert.alert-danger {{error}}
             .form-group.m-30
                 label(for='firstNameForm') First Name
-                input#firstNameForm.form-control(required, type='name', placeholder='First Name', ng-model="fname")
+                input#firstNameForm.form-control(required, type='name', placeholder='Your first name', ng-model="fname")
             .form-group.m-30
                 label(for='lastNameForm') Last Name
-                input#lastNameForm.form-control(required, type='name', placeholder='Last Name', ng-model="lname")
+                input#lastNameForm.form-control(required, type='name', placeholder='Your last name', ng-model="lname")
             .form-group.m-30
                 label(for='lastNameForm') Phone number
-                input#phoneForm.form-control(required, type='number', placeholder='Phone Number', ng-model="phone", ng-minlength="10")
+                input#phoneForm.form-control(required, type='number', placeholder='##########', ng-model="phone", ng-minlength="10")
             .form-group
                 label(for='lastNameForm') Email
-                input#emailForm.form-control(required, type='email', placeholder='Email', ng-model="email")
+                input#emailForm.form-control(required, type='email', placeholder='email@example.com', ng-model="email")
             .col-md-12.text-center
                 .form-group
                 a.btn.btn-primary(type='button', href="", ui-sref="home") Cancel
