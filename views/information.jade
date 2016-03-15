@@ -4,14 +4,14 @@ div.title Who are you checking in?
         form(role='form', name="ctrl.theForms" autocomplete="off")
             .form-group(ng-if="error")
                 .alert.alert-danger {{error}}
-            .form-group
+            .form-group.m-30
                 label(for='firstNameForm') First Name
                 input#firstNameForm.form-control(required, type='name', placeholder='First Name', ng-model="fname")
-            .form-group
+            .form-group.m-30
                 label(for='lastNameForm') Last Name
                 input#lastNameForm.form-control(required, type='name', placeholder='Last Name', ng-model="lname")
-            .form-group
-                label(for='lastNameForm') Phone Number
+            .form-group.m-30
+                label(for='lastNameForm') Phone number
                 input#phoneForm.form-control(required, type='number', placeholder='Phone Number', ng-model="phone", ng-minlength="10")
             .form-group
                 label(for='lastNameForm') Email
