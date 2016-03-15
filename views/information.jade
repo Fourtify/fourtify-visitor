@@ -1,8 +1,9 @@
+div.title Who are you checking in?
 .container
-    .col-md-12.text-center
-        img(src= "http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg" width="200px")
     .col-md-12.text-left
-        form(role='form', name="ctrl.theForms")
+        form(role='form', name="ctrl.theForms" autocomplete="off")
+            .form-group(ng-if="error")
+                .alert.alert-danger {{error}}
             .form-group
                 label(for='firstNameForm') First Name
                 input#firstNameForm.form-control(required, type='name', placeholder='First Name', ng-model="fname")
@@ -11,12 +12,10 @@
                 input#lastNameForm.form-control(required, type='name', placeholder='Last Name', ng-model="lname")
             .form-group
                 label(for='lastNameForm') Phone Number
-                input#phoneForm.form-control(required, type='number', placeholder='Phone Number', ng-model="phone")
+                input#phoneForm.form-control(required, type='number', placeholder='Phone Number', ng-model="phone", ng-minlength="10")
             .form-group
                 label(for='lastNameForm') Email
-                input#emailForm.form-control(required, type='name', placeholder='Email', ng-model="email")
-            .form-group(ng-if="error")
-                .alert.alert-danger {{error}}
+                input#emailForm.form-control(required, type='email', placeholder='Email', ng-model="email")
             .col-md-12.text-center
                 .form-group
                 a.btn.btn-primary(type='button', href="", ui-sref="home") Cancel
