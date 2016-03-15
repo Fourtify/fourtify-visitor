@@ -5,12 +5,13 @@
     color: #ffffff;
     border:0px;
     border-radius: 1px;
-    font-size: 32px;
+    padding: 20px;
+    font-size: 20px;
     margin-top: 30px;
     margin-left: 25px;
     margin-right: 25px;
     background-color: #2196F3;
-    font-weight: normal;
+    font-weight: lighter;
     width:40%;
 }
 
@@ -40,12 +41,14 @@ a.btn-primary:hover:focus:active {
     color: #ffffff;
     border:0px;
     border-radius: 1px;
-    font-size: 25px;
+    padding: 20px;
+    font-size: 20px;
     margin-top: 30px;
     margin-left: 25px;
     margin-right: 25px;
     background-color: #2196F3;
-    width:55%;
+    width:38%;
+    font-weight: lighter;
 }
 
 a.btn-primary-else:hover:focus:active {
@@ -67,11 +70,13 @@ a.btn-primary-else:hover:focus:active {
     color: #ffffff;
     background-color: #F44336;
     border-color: transparent;
-    font-size: 25px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: lighter;
     margin-top: 30px;
     margin-left: 25px;
     margin-right: 25px;
-    width:55%;
+    width: 38%;
 }
 
 h4 {
@@ -120,11 +125,17 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Open Sans", "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 15px;
+    font-weight: lighter;
     line-height: 1.42857143;
     color: #B6B6B6;
     background-color: #FFFFFF;
+}
+
+p {
+    font-size: 20px;
+    color: black;
 }
 
 .content{
@@ -151,7 +162,7 @@ body {
 
 .title{
     width: 100%;
-    background: #FAFAFA;
+    background: #F9FBFB;
     height: 55px;
     text-align: center;
     margin-bottom: 50px;
@@ -164,7 +175,8 @@ label {
     max-width: 100%;
     margin-bottom: 5px;
     margin-left: 0px;
-    font-weight: normal;
+    font-weight: lighter;
+    font-size: 15px;
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -173,13 +185,17 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
 }
-label, .radio label, .checkbox label, .help-block {
+.radio label, .checkbox label, .help-block {
     font-size: 20px;
 }
 
 form{
     width: 60%;
     margin: 0 auto;
+}
+
+.m-30{
+    margin-bottom: 30px;
 }
 
 .form-control {
