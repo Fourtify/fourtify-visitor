@@ -81,6 +81,8 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
 
         $scope.error = null;
         $scope.checkInformation = function() {
+
+            console.log("in checkInfo")
             $scope.error = null;
             if (!$scope.fname) {
                 $scope.error = "First Name required!";
@@ -89,13 +91,13 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                 $scope.error = "Last Name required!";
             }
             else if (!$scope.phone) {
-                $scope.error = "Phone required!";
+                $scope.error = "Phone number format is incorrect.";
             }
             else if (!$scope.email) {
-                $scope.error = "Email required!";
+                $scope.error = "Email format is incorrect.";
             }
 
-
+            console.log("after checkInfo")
             if (!$scope.error) {
                 FourtifyService.getVisitor({
                     /*name: {
@@ -190,7 +192,7 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
             $state.go("home");
         }
         $scope.someoneElse = function(){
-            $state.go("confirmed", {from:"apptNotFound"}, {location:false});
+            $state.go("information", {from:"apptNotFound"}, {location:false});
         }
 
         $scope.receptionist = function(){
