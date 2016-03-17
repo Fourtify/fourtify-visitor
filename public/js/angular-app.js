@@ -43,7 +43,8 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
             })
             .state('confirmed', {
                 url: "/confirmed/:from",
-                templateUrl: "/templates/confirmed"
+                templateUrl: "/templates/confirmed",
+                controller: "ConfirmedCtrl"
             })
             .state('apptNotFound', {
                 url: "/apptNotFound/:from",
@@ -67,10 +68,35 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
     })
 
 
-    .controller('IndexCtrl', function ($scope, $state, $stateParams) {
+    .controller('IndexCtrl', function ($scope, $state, $stateParams, SettingsService) {
         $scope.begin = function(){
             $state.go("information", {from:"home"}, {location:false});
         }
+
+        $scope.settings = {};
+
+        SettingsService.getSettings(
+            {},
+            //success function
+            function(data) {
+                $scope.clearMessages();
+                if(data._logo){
+                    $scope.settings.logo = data._logo;
+                }
+            },
+            //error function
+            function(data, status) {
+                $scope.clearMessages();
+                $scope.err = data;
+            }
+        );
+
+        $scope.clearMessages = function() {
+            $scope.err = null;
+            $scope.pending = null;
+            $scope.success = null;
+        }
+
 
     })
 
@@ -82,7 +108,6 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
         $scope.error = null;
         $scope.checkInformation = function() {
 
-            console.log("in checkInfo")
             $scope.error = null;
             if (!$scope.fname) {
                 $scope.error = "First Name required!";
@@ -97,7 +122,6 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                 $scope.error = "Email format is incorrect.";
             }
 
-            console.log("after checkInfo")
             if (!$scope.error) {
                 FourtifyService.getVisitor({
                     /*name: {
@@ -113,13 +137,17 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                             if(data.length > 0){
                                 $rootScope.visitor = data[0];
                                 $rootScope.appt = data2[0];
-                                if($rootScope.appt._start){
-                                    $rootScope.appt._start = moment($rootScope.appt._start).format("dddd, h:mm a");
+                                if(!$rootScope.appt){
+                                    $state.go("apptNotFound", {from:"information"}, {location:false});
+                                }else{
+                                    if($rootScope.appt && $rootScope.appt._start){
+                                        $rootScope.appt._start = moment($rootScope.appt._start).format("dddd, h:mm a");
+                                    }
+                                    if($rootScope.appt && $rootScope.appt._end){
+                                        $rootScope.appt._end = moment($rootScope.appt._end).format("dddd, h:mm a");
+                                    }
+                                    $state.go("confirmation", {from:"information"}, {location:false});
                                 }
-                                if($rootScope.appt._end){
-                                    $rootScope.appt._end = moment($rootScope.appt._end).format("dddd, h:mm a");
-                                }
-                                $state.go("confirmation", {from:"information"}, {location:false});
                             }
                             else{
                                 $state.go("apptNotFound", {from:"information"}, {location:false});
@@ -187,7 +215,30 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
         }
 
     })
-    .controller('ApptNotFoundCtrl', function ($scope, $state, $stateParams) {
+    .controller('ApptNotFoundCtrl', function ($scope, $state, $stateParams, SettingsService) {
+
+        $scope.settings = {};
+        SettingsService.getSettings(
+            {},
+            //success function
+            function(data) {
+                $scope.clearMessages();
+                if(data._logo){
+                    $scope.settings.logo = data._logo;
+                }
+            },
+            //error function
+            function(data, status) {
+                $scope.clearMessages();
+                $scope.err = data;
+            }
+        );
+        $scope.clearMessages = function() {
+            $scope.err = null;
+            $scope.pending = null;
+            $scope.success = null;
+        }
+
         if($stateParams.from != "information"){
             $state.go("home");
         }
@@ -199,6 +250,65 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
             $state.go("confirmed", {from:"apptNotFound"}, {location:false});
         }
     })
+
+    .controller('ConfirmedCtrl', function ($scope, $state, $stateParams, SettingsService) {
+
+        $scope.settings = {};
+        SettingsService.getSettings(
+            {},
+            //success function
+            function(data) {
+                $scope.clearMessages();
+                if(data._logo){
+                    $scope.settings.logo = data._logo;
+                }
+            },
+            //error function
+            function(data, status) {
+                $scope.clearMessages();
+                $scope.err = data;
+            }
+        );
+        $scope.clearMessages = function() {
+            $scope.err = null;
+            $scope.pending = null;
+            $scope.success = null;
+        }
+    })
+
+    .service('SettingsService', [
+        '$http',
+        function ($http, $rootScope, $window) {
+            return {
+                updateSettings: function( updateObj, success, error) {
+                    var req = {
+                        method: 'PUT',
+                        url: '/settings',
+                        data: updateObj
+                    };
+                    this.apiCall(req, success, error);
+                },
+                getSettings: function(params, success, error) {
+                    var req = {
+                        method: 'GET',
+                        url: '/settings',
+                        params: params
+                    };
+                    this.apiCall(req, success, error);
+                },
+                apiCall: function(req, success, error) {
+                    req.headers = {url: req.url};
+                    req.url = "/api";
+                    $http(req).success(function(data) {
+                        success(data);
+                    }).error(function(data, status) {
+                        error(data, status);
+                    });
+                }
+            };
+        }
+    ])
+
     .service('FourtifyService', [
         '$http',
         function ($http, $rootScope, $window) {
