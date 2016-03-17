@@ -11,7 +11,7 @@
 
 EXPRESS_SECRET=FOURTIFY
 NODE_ENV=development
-PORT=3002
+PORT=3004
 NODE_TLS_REJECT_UNAUTHORIZED=0
 
 ```
@@ -19,4 +19,4 @@ NODE_TLS_REJECT_UNAUTHORIZED=0
 
 10.  Follow the instructions to start the api here: https://github.com/Fourtify/fourtify-api
 
-11.  You can test locally by opening "domain.localhost:3001" where "domain" is an existing provider name on fourtify.us
+11.  You can test locally by opening "domain.localhost:3004" where "domain" is an existing provider name on fourtify.us
