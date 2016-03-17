@@ -81,6 +81,8 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
 
         $scope.error = null;
         $scope.checkInformation = function() {
+
+            console.log("in checkInfo")
             $scope.error = null;
             if (!$scope.fname) {
                 $scope.error = "First Name required!";
@@ -89,13 +91,13 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                 $scope.error = "Last Name required!";
             }
             else if (!$scope.phone) {
-                $scope.error = "Phone required!";
+                $scope.error = "Phone number format is incorrect.";
             }
             else if (!$scope.email) {
-                $scope.error = "Email required!";
+                $scope.error = "Email format is incorrect.";
             }
 
-
+            console.log("after checkInfo")
             if (!$scope.error) {
                 FourtifyService.getVisitor({
                     /*name: {
@@ -164,14 +166,24 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
 
     })
 
-    .controller('WaiverCtrl', function ($scope, $state, $stateParams) {
+    .controller('WaiverCtrl', function ($scope, $state, $stateParams, $rootScope, FourtifyService) {
         if($stateParams.from != "confirmation"){
             $state.go("home");
         }
 
         $scope.confirmed = function(){
-            //@todo visitor with appt to queue
+            FourtifyService.addToQueue({
+                visitor: $rootScope.visitor._id,
+                appointment: $rootScope.appt._id,
+                position: 1
+            }, function(data){
+                // Success
+            }, function(data, status){
+                // Error
+            });
+
             $state.go("confirmed", {from:"waiver"}, {location:false});
+
         }
 
     })
@@ -180,7 +192,7 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
             $state.go("home");
         }
         $scope.someoneElse = function(){
-            $state.go("confirmed", {from:"apptNotFound"}, {location:false});
+            $state.go("information", {from:"apptNotFound"}, {location:false});
         }
 
         $scope.receptionist = function(){
@@ -204,6 +216,14 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                         method: 'GET',
                         url: '/appointments',
                         params: params
+                    };
+                    this.apiCall(req, success, error);
+                },
+                addToQueue: function(params, success, error) {
+                    var req = {
+                        method: 'POST',
+                        url: '/queue',
+                        data: params
                     };
                     this.apiCall(req, success, error);
                 },
