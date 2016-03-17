@@ -1,12 +1,11 @@
 div.title Thank You
 .container
-    .col-md-12.text-center
-        .logo-smaller(style="background-image:url('http://c2-preview.prosites.com/190230/wy/images/LOGOS/Logo.jpg');")
+    .col-md-12.text-center.content
+        .logo(style="background-image:url({{settings.logo}});")
         br
-        .col-md-12.text-center
-            p We have contacted your provider.
-            p They will be with you shortly.
-            p Have a supa day!
+        p We have contacted your provider.
+        p They will be with you shortly.
+        p Have a supa day!
         .row
             a.btn.btn-primary-else(href="", ui-sref="home") Ok
 
