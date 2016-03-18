@@ -56,7 +56,8 @@ router.all("/api", function(req, res){
             },
             method: req.method,
             uri: API_URL+req.headers.url,
-            qs: req.query
+            qs: req.query,
+            json: req.body
         },
         function (error, response, body) {
             if (error) {
