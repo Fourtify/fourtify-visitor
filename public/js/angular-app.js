@@ -131,11 +131,11 @@ angular.module('fourtifyApp', ["oc.lazyLoad", 'ui.router', 'ngAnimate', 'LocalSt
                     email: $scope.email
                 }, function (data) {
                     if(data.length > 0){
+                        $rootScope.visitor = data[0];
                         FourtifyService.getAppointment({
                             visitor: data[0]._id
                         }, function (data2) {
                             if(data.length > 0){
-                                $rootScope.visitor = data[0];
                                 $rootScope.appt = data2[0];
                                 if(!$rootScope.appt){
                                     $state.go("apptNotFound", {from:"information"}, {location:false});
